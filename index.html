@@ -2,15 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>D3</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>D3 matrix</title>
 </head>
-<body ng-app="D3-app" ng-controller="mainController as ctrl">
+<body ng-app="D3-app">
+    <div data-seat-map>
+        <div data-matrix-wrapper></div>
+        <div class="w-50 row mt-5">
+            <div class="col">
+                <input type="number"
+                       class="form-control mr-3"
+                       placeholder="matrix width"
+                       ng-model="ctrl.matrixWidth">
+            </div>
+            <div class="col">
+                <input type="number"
+                       class="form-control mr-3"
+                       placeholder="matrix height"
+                       ng-model="ctrl.matrixHeight">
+            </div>
+            <div class="col">
+                <input type="number"
+                       class="form-control mr-3"
+                       placeholder="items amount"
+                       ng-model="ctrl.matrixItemAmount">
+            </div>
+        </div>
+    </div>
 
-<div data-seat-map></div>
 
-<!--<script src="https://d3js.org/d3.v5.min.js"></script>-->
+
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
-<script src="D3-module.js"></script>
-<script src="script.js"></script>
+<script src="scripts/D3-module.js"></script>
+<script src="scripts/services/evaluate-square-size.js"></script>
+<script src="scripts/services/set-x-attr.js"></script>
+<script src="scripts/services/set-y-attr.js"></script>
+<script src="scripts/directive.js"></script>
+<script src="scripts/script.js"></script>
 </body>
 </html>
