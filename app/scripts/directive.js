@@ -5,15 +5,15 @@ function seatMap(d3Service, evaluateSquareSize) {
             d3Service.d3()
                 .then(function(d3) {
 
-                    var index = 0;
+                    let index = 0;
 
-                    var svgWidth = scope.ctrl.matrixWidth,
+                    let svgWidth = scope.ctrl.matrixWidth,
                         svgHeight = scope.ctrl.matrixHeight,
                         amount = scope.ctrl.matrixItemAmount;
 
-                    var wrapper = elem[0].querySelector('[data-matrix-wrapper]');
+                    let wrapper = elem[0].querySelector('[data-matrix-wrapper]');
 
-                    var widthInput = elem[0].querySelector('[ng-model="ctrl.matrixWidth"]');
+                    let widthInput = elem[0].querySelector('[ng-model="ctrl.matrixWidth"]');
 
                     widthInput.addEventListener('change', function () {
                         svgWidth = this.value;
@@ -22,23 +22,22 @@ function seatMap(d3Service, evaluateSquareSize) {
                     });
                     // create your svg element and a <g> container
                     // for all of the transformed content
-                    var svg = d3.select(wrapper).append("svg")
+                    let svg = d3.select(wrapper).append("svg")
                             .attr("width", svgWidth)
                             .attr("height", svgHeight)
                             .style("background-color", '#e3e7ec'),
                         group = svg.append("g");
 
 
-
                     // then, create the zoom behvavior
-                    var zoom = d3.behavior.zoom()
+                    let zoom = d3.behavior.zoom()
                     // only scale up, e.g. between 1x and 50x
                         .scaleExtent([1, 50])
                         .on("zoom", function() {
                             // the "zoom" event populates d3.event with an object that has
                             // a "translate" property (a 2-element Array in the form [x, y])
                             // and a numeric "scale" property
-                            var e = d3.event,
+                            let e = d3.event,
                                 // now, constrain the x and y components of the translation by the
                                 // dimensions of the viewport
                                 tx = Math.min(0, Math.max(e.translate[0], svgWidth - svgWidth * e.scale)),
@@ -62,16 +61,16 @@ function seatMap(d3Service, evaluateSquareSize) {
                     svg.call(zoom);
 
                     function drawMatrix() {
-                        var squareSize = evaluateSquareSize({
+                        let squareSize = evaluateSquareSize({
                             svgWidth : svgWidth,
                             svgHeight : scope.ctrl.matrixHeight,
                             amount : scope.ctrl.matrixItemAmount
                         });
 
-                        var rowTotalAmount = 0;
+                        let rowTotalAmount = 0;
 
                         /* кол-во строк учитыва общее кол-во квадратов и коол-во квадратов в одной строке*/
-                        var columnTotalAmount = function () {
+                        let columnTotalAmount = function () {
 
                             rowTotalAmount = Math.floor(svgWidth / squareSize);
 
@@ -80,7 +79,7 @@ function seatMap(d3Service, evaluateSquareSize) {
                         };
 
                         /* максимально возможное кол-во квадратов по вертикали*/
-                        var verticalAmount = svgHeight / squareSize;
+                        let verticalAmount = svgHeight / squareSize;
 
                         if(verticalAmount < columnTotalAmount()){
                             while ((svgHeight / squareSize) < columnTotalAmount()) {
@@ -90,10 +89,10 @@ function seatMap(d3Service, evaluateSquareSize) {
 
                         squareSize = squareSize.toFixed(2);
 
-                        var rowCounter = 0;
-                        var lineCounter = 0;
+                        let rowCounter = 0;
+                        let lineCounter = 0;
 
-                        var data = d3.range(amount).map(function () {
+                        let data = d3.range(amount).map(function () {
                             return {
                                 width : squareSize,
                                 height : squareSize,
@@ -102,14 +101,14 @@ function seatMap(d3Service, evaluateSquareSize) {
                         });
 
 
-                        var rect = group.selectAll('rect');
+                        let rect = group.selectAll('rect');
 
                         if(index){
                             rect.attr('fill', function (d) { return d.color})
                                 .attr('height', function (d) { return d.height})
                                 .attr('width', function (d) { return d.width})
                                 .attr('x', function (d, i) {
-                                    var x;
+                                    let x;
 
                                     if(rowCounter < rowTotalAmount-1){
                                         x = squareSize * rowCounter;
@@ -128,7 +127,7 @@ function seatMap(d3Service, evaluateSquareSize) {
                                     return x;
                                 })
                                 .attr('y', function (d,i) {
-                                    var y;
+                                    let y;
 
                                     if(rowCounter < rowTotalAmount-1){
                                         y = squareSize * lineCounter;
@@ -155,7 +154,7 @@ function seatMap(d3Service, evaluateSquareSize) {
                                 .attr('height', function (d) { return d.height})
                                 .attr('width', function (d) { return d.width})
                                 .attr('x', function (d, i) {
-                                    var x;
+                                    let x;
 
                                     if(rowCounter < rowTotalAmount-1){
                                         x = squareSize * rowCounter;
@@ -174,7 +173,7 @@ function seatMap(d3Service, evaluateSquareSize) {
                                     return x;
                                 })
                                 .attr('y', function (d,i) {
-                                    var y;
+                                    let y;
 
                                     if(rowCounter < rowTotalAmount-1){
                                         y = squareSize * lineCounter;
