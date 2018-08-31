@@ -8,24 +8,40 @@
 <body ng-app="D3-app">
     <div data-seat-map>
         <div data-matrix-wrapper></div>
-        <div class="w-50 row mt-5">
+        <div class="w-50 row mt-5"
+             style="min-width: 700px;">
             <div class="col">
-                <input type="number"
-                       class="form-control mr-3"
-                       placeholder="matrix width"
-                       ng-model="ctrl.matrixWidth">
+                <div class="input-group mb-3">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="matrix width"
+                           ng-model="ctrl.matrixWidth">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Width</button>
+                    </div>
+                </div>
             </div>
             <div class="col">
-                <input type="number"
-                       class="form-control mr-3"
-                       placeholder="matrix height"
-                       ng-model="ctrl.matrixHeight">
+                <div class="input-group mb-3">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="matrix height"
+                           ng-model="ctrl.matrixHeight">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Height</button>
+                    </div>
+                </div>
             </div>
             <div class="col">
-                <input type="number"
-                       class="form-control mr-3"
-                       placeholder="items amount"
-                       ng-model="ctrl.matrixItemAmount">
+                <div class="input-group mb-3">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Items amount"
+                           ng-model="ctrl.matrixItemAmount">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Amount</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
