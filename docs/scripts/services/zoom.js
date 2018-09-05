@@ -50,6 +50,6 @@ Zoom.prototype.setWidth = function (num) {
     this.svgWidth = num;
 };
 
-Zoom.prototype.setHeigh = function (num) {
+Zoom.prototype.setHeight = function (num) {
     this.svgHeight = num;
 };

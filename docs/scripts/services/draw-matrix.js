@@ -1,5 +1,4 @@
 function DrawMatrix() {
-
     this.squareSize = 0;
     this.svgWidth = 0;
     this.svgHeight = 0;
@@ -74,7 +73,10 @@ DrawMatrix.prototype.draw = function () {
         .attr('height', function (d) { return d.height})
         .attr('width', function (d) { return d.width})
         .attr('x', function (d, i) {return this._setXaxis(i)}.bind(this))
-        .attr('y', function (d,i) {return this._setYaxis(i)}.bind(this));
+        .attr('y', function (d,i) {return this._setYaxis(i)}.bind(this))
+        .on('click', function () {
+            console.log(this);
+        } );
 };
 
 DrawMatrix.prototype.setSVGWidth = function (num) {
@@ -136,4 +138,8 @@ DrawMatrix.prototype._setYaxis = function (i) {
     }
 
     return y;
+};
+
+DrawMatrix.prototype._popover = function (elem) {
+    console.log(elem);
 };

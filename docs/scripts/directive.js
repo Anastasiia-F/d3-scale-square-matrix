@@ -37,7 +37,7 @@ function seatMap(d3Service, DrawMatrix, Zoom) {
                     DrawMatrix.setSVGHeight(svgHeight);
                     DrawMatrix.draw();
 
-                    Zoom.setHeigh(svgHeight);
+                    Zoom.setHeight(svgHeight);
                 });
 
                 let amountInput = elem[0].querySelector('[ng-model="ctrl.matrixItemAmount"]');

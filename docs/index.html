@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>D3 matrix</title>
 </head>
-<body ng-app="D3-app">
+<body ng-app="D3-app"  style="padding: 20px;">
     <div data-seat-map>
         <div data-matrix-wrapper></div>
         <div class="w-50 row mt-5"
@@ -46,13 +46,25 @@
         </div>
     </div>
 
+    <button popover-animation="true" uib-popover="I fade in and out!" type="button" class="btn btn-secondary">fading</button>
 
+    <script type="text/ng-template" id="myPopoverTemplate.html">
+        <div ng-controller="">
+            <div>{{dynamicPopover.content}}</div>
+            <div class="form-group">
+                <label>Popup Title:</label>
+            </div>
+        </div>
+    </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
-<script src="scripts/D3-module.js"></script>
-<script src="scripts/services/draw-matrix.js"></script>
-<script src="scripts/services/zoom.js"></script>
-<script src="scripts/directive.js"></script>
-<script src="scripts/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-animate.js"></script>
+    <script src="vendor/ui-bootstrap-custom-build/ui-bootstrap-custom-tpls-3.0.4.min.js"></script>
+    <script src="scripts/D3-module.js"></script>
+    <script src="scripts/services/draw-matrix.js"></script>
+    <script src="scripts/services/zoom.js"></script>
+    <script src="scripts/directive.js"></script>
+    <script src="scripts/popover-controller.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 </html>
