@@ -100,7 +100,7 @@ DrawMatrix.prototype.setAmount = function (num) {
 };
 
 DrawMatrix.prototype._randomColor = function () {
-    return "hsl(" + ~~(60 + Math.random() * 3000) + ",80%,60%)";
+    return "hsl(" + ~~(Math.random() * 3000) + ",80%,60%)";
 };
 
 DrawMatrix.prototype._setXaxis = function (i) {
