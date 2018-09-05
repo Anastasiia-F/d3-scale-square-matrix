@@ -69,14 +69,19 @@ DrawMatrix.prototype.draw = function () {
 
     this.isCreated = true;
 
+    let randomColor = this._randomColor;
+
     rect.attr('fill', function (d) { return d.color})
         .attr('height', function (d) { return d.height})
         .attr('width', function (d) { return d.width})
         .attr('x', function (d, i) {return this._setXaxis(i)}.bind(this))
         .attr('y', function (d,i) {return this._setYaxis(i)}.bind(this))
         .on('click', function () {
-            console.log(this);
-        } );
+            d3.select(this)
+                .attr('fill', function () {
+                    return randomColor();
+                })
+        });
 };
 
 DrawMatrix.prototype.setSVGWidth = function (num) {
