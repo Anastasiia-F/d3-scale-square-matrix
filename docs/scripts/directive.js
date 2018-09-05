@@ -80,8 +80,8 @@ function seatMap(d3Service, DrawMatrix, Zoom) {
     }
 
     function controller (){
-        this.matrixWidth = 300;
-        this.matrixHeight = 200;
-        this.matrixItemAmount = 10;
+        this.matrixWidth = 500;
+        this.matrixHeight = 300;
+        this.matrixItemAmount = 300;
     }
 }
