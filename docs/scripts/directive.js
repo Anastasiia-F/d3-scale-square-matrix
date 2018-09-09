@@ -51,25 +51,33 @@ function seatMap(d3Service, DrawMatrix, Zoom) {
 
                 // create your svg element and a <g> container
                 // for all of the transformed content
-                let svg = d3.select(wrapper).append("svg")
-                        .attr("width", svgWidth)
-                        .attr("height", svgHeight)
-                        .style("background-color", '#e3e7ec'),
-                    group = svg.append("g");
+                let svg = d3.select('svg')
+                        .style("background-color", '#e3e7ec');
+
+                let popupGroup = d3.select('#popup-group');
+
+                let matrixGroup = svg.append("g");
+
+                svg.insert(
+                    function () {
+                        return matrixGroup.node();
+                }, function () {
+                        return popupGroup.node();
+                });
 
                 Zoom.add({
                     d3 : d3,
                     svg : svg,
                     svgWidth : svgWidth,
                     svgHeight : svgHeight,
-                    group : group
+                    group : matrixGroup
                 });
 
                 DrawMatrix.init({
                     svgWidth : scope.ctrl.matrixWidth,
                     svgHeight : scope.ctrl.matrixHeight,
                     amount : scope.ctrl.matrixItemAmount,
-                    groupTag : group,
+                    groupTag : matrixGroup,
                     d3 : d3
                 });
 
@@ -80,8 +88,8 @@ function seatMap(d3Service, DrawMatrix, Zoom) {
     }
 
     function controller (){
-        this.matrixWidth = 500;
-        this.matrixHeight = 300;
+        this.matrixWidth = 700;
+        this.matrixHeight = 500;
         this.matrixItemAmount = 300;
     }
 }

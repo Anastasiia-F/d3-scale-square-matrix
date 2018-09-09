@@ -7,7 +7,24 @@
 </head>
 <body ng-app="D3-app"  style="padding: 20px;">
     <div data-seat-map>
-        <div data-matrix-wrapper></div>
+        <div data-matrix-wrapper>
+            <svg height="{{ctrl.matrixHeight}}" width="{{ctrl.matrixWidth}}">
+                <g id="popup-group" transform="translate(50, 50) scale(0.8)" fill="#ffffff">
+                    <rect  height="250" width="450" rx="10" ry="10" />
+                    <polyline points="20,250 27,265 45,250" />
+
+                    <use transform="translate(20.4, 25)" xlink:href="img/icons.svg#first"/>
+                    <use transform="translate(127.8, 25)" xlink:href="img/icons.svg#second"/>
+                    <use transform="translate(235.2, 25)" xlink:href="img/icons.svg#third"/>
+                    <use transform="translate(342.6, 25)" xlink:href="img/icons.svg#fourth"/>
+
+                    <use transform="translate(20.4, 137)" xlink:href="img/icons.svg#fifth"/>
+                    <use transform="translate(127.8, 137)" xlink:href="img/icons.svg#sixth"/>
+                    <use transform="translate(235.2, 137)" xlink:href="img/icons.svg#seventh"/>
+                    <use transform="translate(342.6, 137)" xlink:href="img/icons.svg#eighth"/>
+                </g>
+            </svg>
+        </div>
         <div class="w-50 row mt-5"
              style="min-width: 700px;">
             <div class="col">
