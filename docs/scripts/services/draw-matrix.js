@@ -58,7 +58,7 @@ DrawMatrix.prototype.draw = function () {
         };
     }.bind(this));
 
-
+    //TODO update data instead of redraw all matrix
     if(this.isCreated){
         this.groupTag.selectAll('rect').remove();
     }
