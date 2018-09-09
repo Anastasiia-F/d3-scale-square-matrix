@@ -1,10 +1,12 @@
 (function () {
     'use strict';
 
-    var app = angular.module('D3-app', ['d3','ngAnimate']);
+    let app = angular.module('D3-app', ['d3','ngAnimate']);
 
-    app.service('DrawMatrix', DrawMatrix);
+    app.service('DrawMatrix',['Popup', DrawMatrix]);
     app.service('Zoom', Zoom);
-    app.directive('seatMap', ['d3Service', 'DrawMatrix', 'Zoom', seatMap]);
+    app.factory('POPUP_CONSTS', POPUP_CONSTS);
+    app.service('Popup', ['POPUP_CONSTS', Popup]);
+    app.directive('seatMap', ['d3Service', 'DrawMatrix', 'Zoom', 'Popup', 'POPUP_CONSTS', seatMap]);
 
 })();

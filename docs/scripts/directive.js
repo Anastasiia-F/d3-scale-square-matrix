@@ -1,4 +1,4 @@
-function seatMap(d3Service, DrawMatrix, Zoom) {
+function seatMap(d3Service, DrawMatrix, Zoom, Popup, POPUP_CONSTS) {
     return {
         link: link,
         controller: controller,
@@ -13,8 +13,6 @@ function seatMap(d3Service, DrawMatrix, Zoom) {
                 let svgWidth = scope.ctrl.matrixWidth,
                     svgHeight = scope.ctrl.matrixHeight,
                     amount = scope.ctrl.matrixItemAmount;
-
-                let wrapper = elem[0].querySelector('[data-matrix-wrapper]');
 
                 let widthInput = elem[0].querySelector('[ng-model="ctrl.matrixWidth"]');
 
@@ -49,8 +47,7 @@ function seatMap(d3Service, DrawMatrix, Zoom) {
                     DrawMatrix.draw();
                 });
 
-                // create your svg element and a <g> container
-                // for all of the transformed content
+
                 let svg = d3.select('svg')
                         .style("background-color", '#e3e7ec');
 
@@ -83,6 +80,8 @@ function seatMap(d3Service, DrawMatrix, Zoom) {
 
                 DrawMatrix.draw();
 
+                Popup.setData(popupGroup, svg);
+
             });
 
     }
@@ -91,5 +90,7 @@ function seatMap(d3Service, DrawMatrix, Zoom) {
         this.matrixWidth = 700;
         this.matrixHeight = 500;
         this.matrixItemAmount = 300;
+        this.cornerOffset = 20;
+        this.scale = POPUP_CONSTS.scale;
     }
 }

@@ -1,4 +1,4 @@
-function DrawMatrix() {
+function DrawMatrix(Popup) {
     this.squareSize = 0;
     this.svgWidth = 0;
     this.svgHeight = 0;
@@ -8,6 +8,7 @@ function DrawMatrix() {
     this.isCreated = false;
     this.rowCounter = 0;
     this.lineCounter = 0;
+    this.popup = Popup;
 }
 
 DrawMatrix.prototype.init = function (params) {
@@ -70,6 +71,7 @@ DrawMatrix.prototype.draw = function () {
     this.isCreated = true;
 
     let randomColor = this._randomColor;
+    let self = this;
 
     rect.attr('fill', function (d) { return d.color})
         .attr('height', function (d) { return d.height})
@@ -77,10 +79,12 @@ DrawMatrix.prototype.draw = function () {
         .attr('x', function (d, i) {return this._setXaxis(i)}.bind(this))
         .attr('y', function (d,i) {return this._setYaxis(i)}.bind(this))
         .on('click', function () {
+            self.popup.show(d3.select(this));
+        })
+        .on('mouseover', function () {
             d3.select(this)
-                .attr('fill', function () {
-                    return randomColor();
-                })
+                .transition().duration(150)
+                    .attr('fill', randomColor)
         });
 };
 
