@@ -21,6 +21,15 @@ Popup.prototype.setData = function(popup, svg){
     this.cornerOffset = cornerX - rectX;
 };
 
+Popup.prototype.updateData = function (attr, value) {
+    for(let key in this){
+        if(key == attr){
+            this[key] = value;
+            console.log(this[key]);
+        }
+    }
+};
+
 Popup.prototype.show = function(elem){
     this.popup.attr('opacity', '0');
     let transform = this._setTransform(elem);

@@ -23,6 +23,8 @@ function seatMap(d3Service, DrawMatrix, Zoom, Popup, POPUP_CONSTS) {
                     DrawMatrix.setSVGWidth(svgWidth);
                     DrawMatrix.draw();
 
+                    Popup.updateData('svgWidth', svgWidth);
+
                     Zoom.setWidth(svgWidth);
                 });
 
@@ -34,6 +36,8 @@ function seatMap(d3Service, DrawMatrix, Zoom, Popup, POPUP_CONSTS) {
 
                     DrawMatrix.setSVGHeight(svgHeight);
                     DrawMatrix.draw();
+
+                    Popup.updateData('svgHeight', svgHeight);
 
                     Zoom.setHeight(svgHeight);
                 });
