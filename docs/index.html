@@ -9,9 +9,9 @@
     <div data-seat-map>
         <div data-matrix-wrapper>
             <svg height="{{ctrl.matrixHeight}}" width="{{ctrl.matrixWidth}}">
-                <g id="popup-group" opacity="0" fill="#ffffff" transform="translate(50, -450)">
+                <g id="popup-group" opacity="0" fill="#ffffff" transform="{{ctrl.closeTransform}}">
                     <rect  height="250" width="450" rx="10" ry="10" />
-                    <polyline transform="translate({{ctrl.cornerOffset}}, 0)" points="0,250 12,265 25,250" />
+                    <polyline points="0,0 12,15 25,0" />
 
                     <use transform="translate(20.4, 25)" xlink:href="img/icons.svg#first"/>
                     <use transform="translate(127.8, 25)" xlink:href="img/icons.svg#second"/>
@@ -23,7 +23,10 @@
                     <use transform="translate(235.2, 137)" xlink:href="img/icons.svg#seventh"/>
                     <use transform="translate(342.6, 137)" xlink:href="img/icons.svg#eighth"/>
 
-                    <use transform="translate(342.6, 25)" xlink:href="img/cross.svg#cross" />
+                    <g id="closeIcon" transform="translate(415, 5)">
+                        <rect height="30" width="30" fill="#ffffff"/>
+                        <use xlink:href="img/cross.svg#cross" />
+                    </g>
                 </g>
             </svg>
         </div>

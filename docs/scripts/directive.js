@@ -94,7 +94,5 @@ function seatMap(d3Service, DrawMatrix, Zoom, Popup, POPUP_CONSTS) {
         this.matrixWidth = 700;
         this.matrixHeight = 500;
         this.matrixItemAmount = 300;
-        this.cornerOffset = 20;
-        this.scale = POPUP_CONSTS.scale;
     }
 }

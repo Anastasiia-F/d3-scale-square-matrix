@@ -2,10 +2,15 @@ function Popup(POPUP_CONSTS) {
    this.popup = null;
    this.popupHeight = null;
    this.popupWidth = null;
-   this.consts = POPUP_CONSTS;
-   this.cornerOffset = 0;
+   this.cornerWidth = POPUP_CONSTS.cornerWidth;
+   this.cornerTopOffset = POPUP_CONSTS.cornerTopOffset;
+   this.cornerLeftOffset = POPUP_CONSTS.cornerLeftOffset;
+   this.cornerRotate = POPUP_CONSTS.cornerRotate;
+   this.cornerMinusTopOffset = POPUP_CONSTS.cornerMinusTopOffset;
+   this.closeTransform = POPUP_CONSTS.closeTransform;
    this.svg = null;
    this.corner = null;
+   this.closeBtn = null;
 }
 
 Popup.prototype.setData = function(popup, svg){
@@ -15,10 +20,13 @@ Popup.prototype.setData = function(popup, svg){
     this.popupWidth = popup.node().getBoundingClientRect().width;
     this.corner = popup.select('polyline');
     this.svgWidth = svg.attr('width');
+    this.closeBtn = popup.select('#closeIcon');
 
-    let cornerX =this.corner.node().getBoundingClientRect().x;
-    let rectX = popup.select('rect').node().getBoundingClientRect().x;
-    this.cornerOffset = cornerX - rectX;
+    let self = this;
+
+    this.closeBtn.on('click', function () {
+        self.close();
+    })
 };
 
 Popup.prototype.updateData = function (attr, value) {
@@ -32,31 +40,55 @@ Popup.prototype.updateData = function (attr, value) {
 
 Popup.prototype.show = function(elem){
     this.popup.attr('opacity', '0');
-    let transform = this._setTransform(elem);
+    let transformData = this._setTransform(elem);
     this.popup
-        .attr('transform', transform)
+        .attr('transform', transformData.popup)
         .transition().duration(150)
         .attr('opacity', '1');
 
+    this.corner.attr('transform', transformData.corner);
+};
+
+Popup.prototype.close = function(){
+    this.popup
+        .transition().duration(150)
+        .attr('opacity', '0')
+        .transition().duration(0)
+        .attr('transform', this.closeTransform)
 };
 
 Popup.prototype._setTransform = function(elem){
-    let elemX = elem.attr('x');
-    let elemY = elem.attr('y');
+    let elemX = parseInt(elem.attr('x'));
+    let elemY = parseInt(elem.attr('y'));
+    let elemHeight = parseInt(elem.attr('height'));
     let rightOffset = 25;
+    let topOffset = 10;
     let maxX = this.svgWidth - this.popupWidth - rightOffset;
-    let popupX = elemX - this.cornerOffset - (this.consts.cornerWidth/2);
+    let popupX = elemX - this.cornerLeftOffset - (this.cornerWidth/2);
     let popupY = elemY - this.popupHeight;
-    let offsetX = elem.attr('width') / 2;
+    let offsetX = parseInt(elem.attr('width')) / 2;
+    let cornerXOffset = this.cornerLeftOffset;
+    let cornerYOffset = this.cornerTopOffset;
+    let rotate = '';
+
 
     if(popupX > maxX){
         popupX = maxX;
-        let cornerOffset = (elemX - popupX - offsetX);
-        this.corner.attr('transform', 'translate('+cornerOffset+')');
-    }
-    else {
-        this.corner.attr('transform', 'translate('+this.cornerOffset+')');
+        cornerXOffset = (elemX - popupX - offsetX);
     }
 
-    return 'translate('+ (popupX + offsetX) +', '+ (popupY) +')';
+    if(popupY <= 0){
+        popupY = elemY + elemHeight + topOffset;
+        cornerYOffset = this.cornerMinusTopOffset;
+        rotate =  this.cornerRotate;
+    }
+
+    let cornerTransform = 'translate(' + cornerXOffset + ',' + cornerYOffset + ')' + rotate;
+
+    let popupTransform = 'translate('+ (popupX + offsetX) +', '+ (popupY) +')';
+
+    return {
+        popup : popupTransform,
+        corner : cornerTransform
+    }
 };

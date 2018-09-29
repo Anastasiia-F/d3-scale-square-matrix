@@ -148,7 +148,3 @@ DrawMatrix.prototype._setYaxis = function (i) {
 
     return y;
 };
-
-DrawMatrix.prototype._popover = function (elem) {
-    console.log(elem);
-};
